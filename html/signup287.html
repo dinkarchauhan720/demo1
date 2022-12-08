@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+<title>Registration Form</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div class="signup-form">
+    <form onkeyup="return validation()" onsubmit="return validation()" name="myform" action="/examples/actions/confirmation.php" method="post">
+		<h2>Register</h2>
+		<p class="hint-text">Create your account.</p>
+
+        <div class="form-group">
+			<div class="row">
+				<div class="col">
+					<label>First Name</label>
+					<input type="text" class="form-control" required name="first_name" id="fname" placeholder="First Name"><small class="text-danger font-weight-bold" id="fnameerr"></small>
+				</div>
+				<div class="col">
+					<label>Last Name</label>
+					<input type="text" class="form-control" required name="last_name" id="lname" placeholder="Last Name"><small class="text-danger font-weight-bold" id="lnameerr"></small>
+				</div>
+			</div>        	
+        </div>
+
+        <div class="form-group">
+			<div class="row">
+				<div class="col">
+					<label>Your Email</label>
+					<input type="email" class="form-control" required name="email" id="email" placeholder="Email"><small class="text-danger font-weight-bold" id="emailerr"></small>
+				</div>
+				<div class="col">
+					<label>Your Mobile Number</label>
+					<input type="text" class="form-control" required name="mobile" id="mobile" placeholder="Mobile Number"><small class="text-danger font-weight-bold" id="mobileerr"></small>
+				</div>
+			</div>        	
+        </div>
+        <div class="form-group">
+			<div class="row">
+				<div class="col">
+					<label>Gender</label><br>
+					<input type="radio"  name="gender" checked> Male <input type="radio"  name="gender"> Female
+				</div>
+				<div class="col">
+					<label>Date of Birth</label>
+					<input type="date" class="form-control" name="dob" required="required">
+				</div>
+			</div>        	
+        </div>
+
+         <div class="form-group">
+			<div class="row">
+				<div class="col">
+					<input type="password" class="form-control" required id="password" name="password" placeholder="Password"><small class="text-danger font-weight-bold" id="passworderr"></small>
+				</div>
+				<div class="col">
+					<input type="password" class="form-control" required id="cpassword" name="cpassword" placeholder="Confirm Password"><small class="text-danger font-weight-bold" id="cpassworderr"></small>
+				</div>
+			</div>        	
+        </div>	
+
+        <div class="form-group">
+			<label class="form-check-label"><input type="checkbox" required="required" > I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
+		</div>
+
+		<div class="form-group">
+            <button disabled type="submit" id="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
+        </div>
+
+    </form>
+	<div class="text-center">Already have an account? <a href="#">Sign in</a></div>
+</div>
+
+<script>
+function validation(){
+
+		var fname = document.getElementById('fname').value;
+		var lname = document.getElementById('lname').value;
+		var email = document.getElementById('email').value;
+		var mobile = document.getElementById('mobile').value;
+		var password = document.getElementById('password').value;
+		var cpassword = document.getElementById('cpassword').value;
+		var btn =document.getElementById('submit');
+		
+		
+		var fnamecheck = /^[A-Za-z.]{3,15}$/;
+		var lnamecheck = /^[A-Za-z.]{3,30}$/;
+		var emailcheck = /^[A-Za-z0-9_.]{3,}@[A-Za-zgmailyahoooutlook]{5,7}[.]{1}[inorgniccom.]{2,6}$/;
+		var mobilecheck =  /^[0-9]{3}[-]{1}[0-9]{3}[-]{1}[0-9]{4}$/;
+		var passwordcheck = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{7,15}$/;
+		var cpasswordcheck = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{7,15}$/;
+
+		 // First Name validation
+		 if (fnamecheck.test(fname)){
+		 	document.myform.first_name.style.backgroundColor = "#b8fcb9";
+        	document.getElementById('fnameerr').innerHTML ="";
+    	} 
+    	else if(fname==""){
+    		document.myform.first_name.style.backgroundColor = "white";
+        	document.getElementById('fnameerr').innerHTML ="First Name Blank not allow";
+        	return false;
+    	}
+    	else{
+    		document.myform.first_name.style.backgroundColor = "#fdd0c9";
+        	document.getElementById('fnameerr').innerHTML ="First Name is invalide only character allow and minimus lenth 3";
+        	return false;
+    	}
+    	// Last name validation
+    	 if (lnamecheck.test(lname)){
+		 	document.myform.last_name.style.backgroundColor = "#b8fcb9";
+        	document.getElementById('lnameerr').innerHTML ="";
+    	} 
+    	else if(lname==""){
+    		document.myform.last_name.style.backgroundColor = "white";
+        	document.getElementById('lnameerr').innerHTML ="Last Name Blank not allow";
+        	return false;
+    	}
+    	else{
+    		document.myform.last_name.style.backgroundColor = "#fdd0c9";
+        	document.getElementById('lnameerr').innerHTML ="Last Name is invalide only character allow and minimus lenth 3";
+        	return false;
+    	}
+    	// email validation
+    	 if (emailcheck.test(email)){
+		 	document.myform.email.style.backgroundColor = "#b8fcb9";
+        	document.getElementById('emailerr').innerHTML ="";
+    	} 
+    	else if(email==""){
+    		document.myform.email.style.backgroundColor = "white";
+        	document.getElementById('emailerr').innerHTML ="Email Blank not allow";
+        	return false;
+    	}
+    	else{
+    		document.myform.email.style.backgroundColor = "#fdd0c9";
+        	document.getElementById('emailerr').innerHTML ="Email format is invalide.";
+        	return false;
+    	}
+    	// Mobile Number validation
+    	 if (mobilecheck.test(mobile)){
+		 	document.myform.mobile.style.backgroundColor = "#b8fcb9";
+        	document.getElementById('mobileerr').innerHTML ="";
+    	} 
+    	else if(mobile==""){
+    		document.myform.mobile.style.backgroundColor = "white";
+        	document.getElementById('mobileerr').innerHTML ="Mobile No. Blank not allow";
+        	return false;
+    	}
+    	else{
+    		document.myform.mobile.style.backgroundColor = "#fdd0c9";
+        	document.getElementById('mobileerr').innerHTML ="Mobile No. format is invalide, is formate 123-123-1234";
+        	return false;
+    	}
+    	// Password validation
+    	 if (passwordcheck.test(password)){
+		 	document.myform.password.style.backgroundColor = "#b8fcb9";
+        	document.getElementById('passworderr').innerHTML ="";
+    	} 
+    	else if(password==""){
+    		document.myform.password.style.backgroundColor = "white";
+        	document.getElementById('passworderr').innerHTML ="Password Blank not allow";
+        	return false;
+    	}
+    	else{
+    		document.myform.password.style.backgroundColor = "#fdd0c9";
+        	document.getElementById('passworderr').innerHTML ="Password is weak";
+        	return false;
+    	}
+    	// Confirm_Password validation
+    	 if (cpasswordcheck.test(cpassword) & password==cpassword){
+		 	document.myform.cpassword.style.backgroundColor = "#b8fcb9";
+        	document.getElementById('cpassworderr').innerHTML ="";
+    	} 
+    	else if(cpassword==""){
+    		document.myform.cpassword.style.backgroundColor = "white";
+        	document.getElementById('cpassworderr').innerHTML ="Confirm Password Blank not allow";
+        	return false;
+    	}
+    	else{
+    		document.myform.cpassword.style.backgroundColor = "#fdd0c9";
+        	document.getElementById('cpassworderr').innerHTML ="Password is not matching";
+        	return false;
+    	}
+    	//Remove Disabled on Register Now Button
+    	
+    	if (fnamecheck.test(fname) & lnamecheck.test(lname) & emailcheck.test(email) & mobilecheck.test(mobile) & passwordcheck.test(password) & password==cpassword) {
+
+    		btn.disabled=false;
+    	} else{
+    		btn.disabled=true;
+    	}
+	}
+</script>
+</body>
+</html>
